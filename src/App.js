@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {RiSendPlaneFill} from 'react-icons/ri';
-import Pop from './components/pop';
+import Pop from './others/pop';
 import { useState} from 'react';
 import axios from 'axios'
 
@@ -23,24 +23,25 @@ function App() {
       message:message
     }
     await axios.post('http://localhost:4000/reviews',postData)
-    .then(res=> console.log(res.data))
+    .then(res=> {
+      setHeader(res.data.header)
+      setDesc(res.data.desc)
+      setBtn(res.data.btn)
+      setButtonPopUp(true)
+    })
   }
 
   const handleSending = (e) =>{
     e.preventDefault()
-
     if(textAreaCount > 0){
-      setHeader("Thank you for sparing your time!");
-      setDesc("You'll now be redirected to reviews other people made.");
-      setBtn("Proceed");
       axiosPostData()
     }else{
       setHeader("Input text first!");
       setDesc("You're free to express your thoughts about me, cursing is not prohibited.");
       setBtn("Ok!");
-      
+      setButtonPopUp(true)
     }
-    setButtonPopUp(true);
+    setMessage('')
   }
 
   return (
