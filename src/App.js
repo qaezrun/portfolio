@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {RiSendPlaneFill} from 'react-icons/ri';
-import Pop from './others/pop';
+import Pop from './components/pop';
 import { useState} from 'react';
 import axios from 'axios'
 
