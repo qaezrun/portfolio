@@ -1,0 +1,56 @@
+
+.main{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: popreg;
+}
+.sub-pop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    animation: anvil 0.2s;
+}
+.sub-pop h4,p{
+    margin: 0px;
+}
+.sub-pop p{
+    font-size: .9em;
+}
+.sub-pop button{
+    margin-top: 10px;
+    font-size: 1em;
+    font-family: popreg;
+    padding: 3px 15px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    color: whitesmoke;
+    background-color: #56beff;
+}
+
+.sub-pop button:hover{
+    color: #24a0ed;
+    background-color: whitesmoke;
+    border: 1px solid #24a0ed;
+    transform: scale(1.07);
+}
+
+hr {
+    border: 0;
+    clear:both;
+    display:block;
+    width: 96%;               
+    background-color:grey;
+    height: 1px;
+}

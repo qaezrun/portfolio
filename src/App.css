@@ -1,0 +1,98 @@
+html,body{
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+@font-face {
+  font-family: popreg;
+  src: url(../public/fonts/Poppins-Regular.ttf);
+}
+@font-face {
+  font-family: popsemibo;
+  src: url(../public/fonts/Poppins-SemiBold.ttf);
+}
+.App{
+  min-height: 100vh;
+  background-color: #282c34;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sub-con{
+  padding: 15px;
+  width: 400px;
+  height: 280px;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  animation: anvil .8s;
+}
+.sub-con h4{
+  font-family: popsemibo;
+  margin: 0px;
+}
+
+
+.textMessage{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.textMessage p{
+  margin: 0px;
+  text-align: end;
+  font-family: popreg;
+  font-size: .8em;
+}
+.textMessage textarea{
+  font-family: popreg;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  resize: none;
+  padding: 5px;
+  height: 100%;
+  font-size: 1em;
+}
+
+.btn{
+  font-size: 1em;
+  font-family: popreg;
+  padding: 5px 15px;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  color: whitesmoke;
+  background-color: #56beff;
+  display: flex;
+  align-items: center;
+}
+.btn:hover{
+  color: #24a0ed;
+  background-color: whitesmoke;
+  border: 1px solid #24a0ed;
+  transform: scale(1.07);
+}
+.send-icon{
+  padding-left: 3px;
+}
+
+@keyframes anvil {
+  0% {
+      transform: scale(1) translateY(0px);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  1% {
+      transform: scale(0.96) translateY(10px);
+      opacity: 0;
+      box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+  }
+  100% {
+      transform: scale(1) translateY(0px);
+      opacity: 1;
+      box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+  }
+}
