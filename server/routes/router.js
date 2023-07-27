@@ -9,7 +9,17 @@ router.post('/reviews',async (req,res)=>{
     const newMessage = new schemas.Messages(data)
     const saveMessage = await newMessage.save()
     if(saveMessage){
-        res.send('Message Successfully Sent')
+        res.send({
+            header:"Thank you for sparing your time!",
+            desc:"You'll be redirected to see reviews from others.",
+            btn:"Proceed"
+        })
+    }else{
+        res.send({
+            header:"Apologies, fatal error occured!",
+            desc:"I hope Danniel is aware of this and can fix it soon. Please try again later.",
+            btn:"Ok!"
+        })
     }
     res.end()
 })
