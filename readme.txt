@@ -1,0 +1,1 @@
+This project is just for fun and main purpose is to learn MERN stack. I'm a aspiring web dev so if you come stumble upon this repo please dont judge.
