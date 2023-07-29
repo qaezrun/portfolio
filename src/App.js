@@ -33,7 +33,10 @@ function App() {
 
   const handleSending = (e) =>{
     e.preventDefault()
+
     if(textAreaCount > 0){
+      setMessage('');
+      ChangeTextAreaCount(0)
       axiosPostData()
     }else{
       setHeader("Input text first!");
@@ -41,7 +44,6 @@ function App() {
       setBtn("Ok!");
       setButtonPopUp(true)
     }
-    setMessage('')
   }
 
   return (
@@ -50,7 +52,7 @@ function App() {
         <h4>This box is open to the public, you can express yourself against Danniel.</h4>
         <div className='textMessage'>
           <p>{textAreaCount}/150</p>
-          <textarea type="text" className='message' placeholder='Enter message..' onChange={recalculate} maxLength={150}></textarea>
+          <textarea type="text" className='message' placeholder='Enter message..' value={message} onChange={recalculate} maxLength={150}></textarea>
         </div>
         <button className='btn' onClick={handleSending} >Send<RiSendPlaneFill className='send-icon'/></button>
       </div>

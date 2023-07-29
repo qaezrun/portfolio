@@ -13,7 +13,6 @@ html,body{
   padding: 0px;
 }
 
-
 .App{
   min-height: 100vh;
   background-color: #282c34;
@@ -79,6 +78,13 @@ html,body{
 }
 .send-icon{
   padding-left: 3px;
+}
+
+
+@media (max-width: 414px) {
+  .App {
+    padding: 10px;
+  }
 }
 
 
