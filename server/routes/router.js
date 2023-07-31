@@ -12,7 +12,8 @@ router.post('/reviews',async (req,res)=>{
         res.send({
             header:"Thank you for sparing your time!",
             desc:"You'll be redirected to see reviews from others.",
-            btn:"Proceed"
+            btn:"Proceed",
+            visited: true
         })
     }else{
         res.send({
@@ -23,4 +24,13 @@ router.post('/reviews',async (req,res)=>{
     }
     res.end()
 })
+router.get('/messages', async(req,res)=>{// this is how to get data from collection mongoose
+    const messages = schemas.Messages //look on model/schemas.js Message is a model
+    
+    const userMessages = await messages.find({}).exec()// gets data from messages collection
+    if(userMessages){
+        res.send(JSON.stringify(userMessages))
+    }
+})
+
 module.exports = router
