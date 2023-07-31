@@ -12,8 +12,7 @@ router.post('/reviews',async (req,res)=>{
         res.send({
             header:"Thank you for sparing your time!",
             desc:"You'll be redirected to see reviews from others.",
-            btn:"Proceed",
-            visited: true
+            btn:"Proceed"
         })
     }else{
         res.send({
