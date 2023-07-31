@@ -1,7 +1,7 @@
 import React from 'react'
 import './create.css';
 import {RiSendPlaneFill} from 'react-icons/ri';
-import Pop from './PopUps/pop';
+import Pop from '../PopUps/pop';
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useState} from 'react';
