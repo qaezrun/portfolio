@@ -3,7 +3,7 @@ import './create.css';
 import {RiSendPlaneFill} from 'react-icons/ri';
 import Pop from '../PopUps/pop';
 import axios from 'axios'
-import Cookies from 'js-cookie'
+//import Cookies from 'js-cookie'
 import { useState} from 'react';
 
 function Create() {
@@ -30,7 +30,15 @@ function Create() {
             setDesc(res.data.desc)
             setBtn(res.data.btn)
             setStatus(true)
-            Cookies.set('visitHistory',res.data.visited);
+            //Cookies.set('visitHistory',res.data.visited);
+            setButtonPopUp(true)
+            setMessage('');
+            ChangeTextAreaCount(0)
+        }).catch(err => {
+            setHeader("Apologies, fatal error occured!")
+            setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
+            setBtn("Ok!")
+            setStatus(false)
             setButtonPopUp(true)
             setMessage('');
             ChangeTextAreaCount(0)
