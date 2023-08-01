@@ -2,7 +2,12 @@ const express = require('express')
 const router = express.Router()
 const schemas = require('../models/schemas')
 
-router.post('/reviews',async (req,res)=>{
+router.get('/', async(req,res)=>{// this is how to get data from collection mongoose
+    res.send('Server is up and running');
+})
+
+
+router.post('/messages',async (req,res)=>{
     const {message,codeName} = req.body
 
     const data = {message:message,codeName:codeName}
@@ -23,7 +28,7 @@ router.post('/reviews',async (req,res)=>{
     }
     res.end()
 })
-router.get('/', async(req,res)=>{// this is how to get data from collection mongoose
+router.get('/userMessages', async(req,res)=>{// this is how to get data from collection mongoose
     const messages = schemas.Messages //look on model/schemas.js Message is a model
     
     const userMessages = await messages.find({}).exec()// gets data from messages collection
@@ -55,7 +60,7 @@ router.post('/emails',async (req,res)=>{
     res.end()
 })
 
-router.get('/emails', async(req,res)=>{// this is how to get data from collection mongoose
+router.get('/userEmails', async(req,res)=>{// this is how to get data from collection mongoose
     const emails = schemas.Emails //look on model/schemas.js Message is a model
     
     const userEmails = await emails.find({}).exec()// gets data from messages collection
