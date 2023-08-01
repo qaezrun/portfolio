@@ -25,6 +25,9 @@
 .sub-pop h4,p{
     margin: 0px;
 }
+.sub-pop h4{
+    text-align: center;
+}
 .sub-pop p{
     font-size: .9em;
 }

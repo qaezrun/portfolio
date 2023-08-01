@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router-dom';
 function Pop(props) {
     const navigate = useNavigate()
     const handleDirection = (e) =>{
-        if (!props.status){
+        if(props.for === "message-creation"){
+            if (!props.status){
+                props.setTrigger(props.status)
+            }else{
+                navigate('Down')
+            }
+        }else if(props.for === "mail-sending"){
             props.setTrigger(props.status)
-        }else{
-            navigate('reviews')
         }
     }
     return (props.trigger) ? (
