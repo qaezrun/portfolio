@@ -1,0 +1,96 @@
+html,body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-con-two{
+    min-height: 100vh;
+    background-color: #272b30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-con-two{
+    padding: 15px;
+    width: 90%;
+    height: 300px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:30px
+}
+.timer{
+    font-family: popsemibo;
+    color: white;
+    font-size: 3em;
+    text-align: center;
+}
+.notify{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40%;
+}
+.notify label{
+    font-family: popreg;
+    color: gainsboro;
+}
+.mailer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 5px;
+    align-items: center;
+}
+.mailer input{
+    padding: 10px;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+    font-family: popreg;
+    color: gray;
+}
+
+.mail{
+    width: 100px;
+    height: 40px;
+    font-size: .8em;
+    font-family: popreg;
+    border: 1px solid gainsboro;
+    border-radius: 3px;
+    color: whitesmoke;
+    background-color: #56beff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.mail:hover{
+    color: #24a0ed;
+    background-color: whitesmoke;
+    border: 1px solid #24a0ed;
+}
+
+@media (max-width: 414px) {
+    .timer{
+        font-size: 1em;
+    }
+    .notify{
+        width: 90%;
+    }
+    .notify label{
+        font-size: .8em;
+    }
+    .sub-con-two{
+        gap: 20px;
+    }
+    .mailer input{
+        font-size: .8em;
+    }
+}
