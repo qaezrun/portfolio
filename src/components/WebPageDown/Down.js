@@ -141,7 +141,7 @@ function Reviews() {
         const postData = {
             email:myemail.trim()
         }
-        await axios.post('http://localhost:4000/emails',postData)
+        await axios.post('https://encouraging-fawn-gown.cyclic.app/emails',postData)
         .then(res=> {
             setHeader(res.data.header)
             setDesc(res.data.desc)
