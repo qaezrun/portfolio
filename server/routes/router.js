@@ -55,4 +55,13 @@ router.post('/emails',async (req,res)=>{
     res.end()
 })
 
+router.get('/emails', async(req,res)=>{// this is how to get data from collection mongoose
+    const emails = schemas.Emails //look on model/schemas.js Message is a model
+    
+    const userEmails = await emails.find({}).exec()// gets data from messages collection
+    if(userEmails){
+        res.send(JSON.stringify(userEmails))
+    }
+})
+
 module.exports = router
