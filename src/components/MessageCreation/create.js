@@ -13,8 +13,12 @@ function Create() {
     const [buttonPopUp,setButtonPopUp] = useState(false);
     const [textAreaCount, ChangeTextAreaCount] = React.useState(0);
     const [message,setMessage] = useState('');
+    const [codename,setCodeName] = useState('Unknown');
     const [stat, setStatus] = useState(false);
 
+    const code = e => {
+        setCodeName(e.target.value)
+    };
     const recalculate = e => {
         setMessage(e.target.value)
         ChangeTextAreaCount(e.target.value.length);
@@ -22,7 +26,8 @@ function Create() {
     
     const axiosPostData = async()=>{
         const postData = {
-            message:message.trim()
+            message:message.trim(),
+            codeName:codename.trim()
         }
         await axios.post('http://localhost:4000/reviews',postData)
         .then(res=> {
@@ -47,12 +52,18 @@ function Create() {
     
     const handleSending = (e) =>{
         e.preventDefault()
-    
-        if(textAreaCount > 0){
+
+        if(textAreaCount >= 10){
             axiosPostData()
+        }else if (textAreaCount >= 1 ){
+            setHeader("Please ensure it's above 10 char!");
+            setDesc("I've given plenty of space for these messages, and it might seem odd if your message is under 10 characters.");
+            setBtn("Ok!");
+            setStatus(false)
+            setButtonPopUp(true)
         }else{
             setHeader("Input text first!");
-            setDesc("You're free to express your thoughts about me, cursing is not prohibited.");
+            setDesc("No need to worry about your identity; the form only asks for a short, anonymous message.");
             setBtn("Ok!");
             setStatus(false)
             setButtonPopUp(true)
@@ -62,14 +73,18 @@ function Create() {
     return (
         <div className="main-con">
             <div className='sub-con'>
-                <h4>This box is open to the public, you can express yourself against Danniel.</h4>
+                <h4>Feel free to express your thoughts about Danniel, whether positive or negative.</h4>
+                <div className='codeName'>
+                    <label>Code name:</label>
+                    <input type='text' value={codename} onChange={code}/>
+                </div>
                 <div className='textMessage'>
                 <p>{textAreaCount}/150</p>
                 <textarea type="text" className='message' placeholder='Enter message..' value={message} onChange={recalculate} maxLength={150}></textarea>
                 </div>
-                <button className='btn' onClick={handleSending} >Send<RiSendPlaneFill className='send-icon'/></button>
+                <button className='btn' onClick={handleSending}>Send<RiSendPlaneFill className='send-icon'/></button>
             </div>
-            <Pop trigger={buttonPopUp} setTrigger={setButtonPopUp} text={btn} status={stat}>
+            <Pop trigger={buttonPopUp} setTrigger={setButtonPopUp} text={btn} status={stat} for={"message-creation"}>
                 <h4>{header}</h4>
                 <hr />
                 <p>{desc}</p>

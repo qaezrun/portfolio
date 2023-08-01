@@ -6,7 +6,7 @@ html,body{
 
 .main-con{
     min-height: 100vh;
-    background-color: #282c34;
+    background-color: #272b30;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,29 +14,55 @@ html,body{
 .sub-con{
     padding: 15px;
     width: 400px;
-    height: 280px;
+    height: 300px;
     border-radius: 10px;
     background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
+    border: 2px solid gainsboro;
 }
 .sub-con h4{
     font-family: popsemibo;
     margin: 0px;
 }
+.codeName{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    font-family: popreg;
+    font-size: .9em;
+    gap: 10px;
+    padding: 5px 0px 0px 0px;
+}
+.codeName label{
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+.codeName input{
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+    padding: 8px;
+    font-family: popreg;
+    font-size: 1em;
+}
+
 .textMessage{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    margin-top: -20px;
 }
 .textMessage p{
     margin: 0px;
     text-align: end;
     font-family: popreg;
     font-size: .8em;
+    color: gray;
 }
 .textMessage textarea{
     font-family: popreg;
@@ -63,7 +89,6 @@ html,body{
     color: #24a0ed;
     background-color: whitesmoke;
     border: 1px solid #24a0ed;
-    transform: scale(1.07);
 }
 .send-icon{
     padding-left: 3px;
@@ -71,6 +96,24 @@ html,body{
 @media (max-width: 414px) {
     .main-con {
         padding: 10px;
+    }
+    .sub-con h4{
+        font-size: .9em;
+    }
+    .codeName{
+        font-size: .8em;
+    }
+    .codeName input{
+        font-size: .8em;
+    }
+    .textMessage p{
+        font-size: .7em;
+    }
+    .textMessage textarea{
+        font-size: .8em;
+    }
+    .btn{
+        font-size: .8em;
     }
 }
 @keyframes anvil {
