@@ -29,7 +29,7 @@ function Create() {
             message:message.trim(),
             codeName:codename.trim()
         }
-        await axios.post('http://localhost:4000/reviews',postData)
+        await axios.post('https://encouraging-fawn-gown.cyclic.app/messages',postData)
         .then(res=> {
             setHeader(res.data.header)
             setDesc(res.data.desc)
