@@ -2,6 +2,7 @@ import React from 'react'
 import './create.css';
 import {RiSendPlaneFill} from 'react-icons/ri';
 import Pop from '../PopUps/pop';
+import Loader from '../PopUps/loader';
 import axios from 'axios'
 //import Cookies from 'js-cookie'
 import { useState} from 'react';
@@ -11,6 +12,7 @@ function Create() {
     const [desc, setDesc] = useState('');
     const [btn, setBtn] = useState('');
     const [buttonPopUp,setButtonPopUp] = useState(false);
+    const [loadingTrig,setLoadingTrig] = useState(false);
     const [textAreaCount, ChangeTextAreaCount] = React.useState(0);
     const [message,setMessage] = useState('');
     const [codename,setCodeName] = useState('Unknown');
@@ -29,17 +31,28 @@ function Create() {
             message:message.trim(),
             codeName:codename.trim()
         }
-        await axios.post('https://encouraging-fawn-gown.cyclic.app/messages',postData)
-        .then(res=> {
-            setHeader(res.data.header)
-            setDesc(res.data.desc)
-            setBtn(res.data.btn)
-            setStatus(true)
-            //Cookies.set('visitHistory',res.data.visited);
-            setButtonPopUp(true)
-            setMessage('');
-            ChangeTextAreaCount(0)
-        }).catch(err => {
+        try {
+            setLoadingTrig(true)
+            await axios.post('https://encouraging-fawn-gown.cyclic.app/messages',postData)
+            .then(res=> {
+                setHeader(res.data.header)
+                setDesc(res.data.desc)
+                setBtn(res.data.btn)
+                setStatus(true)
+                //Cookies.set('visitHistory',res.data.visited);
+                setButtonPopUp(true)
+                setMessage('');
+                ChangeTextAreaCount(0)
+            }).catch(err => {
+                setHeader("Apologies, fatal error occured!")
+                setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
+                setBtn("Ok!")
+                setStatus(false)
+                setButtonPopUp(true)
+                setMessage('');
+                ChangeTextAreaCount(0)
+            })
+        } catch (error) {
             setHeader("Apologies, fatal error occured!")
             setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
             setBtn("Ok!")
@@ -47,7 +60,9 @@ function Create() {
             setButtonPopUp(true)
             setMessage('');
             ChangeTextAreaCount(0)
-        })
+        } finally{
+            setLoadingTrig(false)
+        }
     }
     
     const handleSending = (e) =>{
@@ -84,6 +99,7 @@ function Create() {
                 </div>
                 <button className='btn' onClick={handleSending}>Send<RiSendPlaneFill className='send-icon'/></button>
             </div>
+            <Loader trigger={loadingTrig}></Loader>
             <Pop trigger={buttonPopUp} setTrigger={setButtonPopUp} text={btn} status={stat} for={"message-creation"}>
                 <h4>{header}</h4>
                 <hr />

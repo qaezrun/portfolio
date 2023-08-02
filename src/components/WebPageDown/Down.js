@@ -7,6 +7,7 @@ import {useEffect,useState} from 'react';
 import './Down.css';
 import {RiMailSendLine} from 'react-icons/ri';
 import Pop from '../PopUps/pop';
+import Loader from '../PopUps/loader';
 
 function Reviews() {
     const [Data, setFetchedData] = useState([]);
@@ -14,6 +15,7 @@ function Reviews() {
     const [desc, setDesc] = useState('');
     const [btn, setBtn] = useState('');
     const [buttonPopUp,setButtonPopUp] = useState(false);
+    const [loadingTrig,setLoadingTrig] = useState(false);
     const [stat, setStatus] = useState(false);
     
     /*useEffect(()=>{
@@ -141,19 +143,29 @@ function Reviews() {
         const postData = {
             email:myemail.trim()
         }
-        await axios.post('https://encouraging-fawn-gown.cyclic.app/emails',postData)
-        .then(res=> {
-            setHeader(res.data.header)
-            setDesc(res.data.desc)
-            setBtn(res.data.btn)
-            setButtonPopUp(true)
-            setEmail('')
-        }).catch(err => {
+        try {
+            setLoadingTrig(true)
+            await axios.post('https://encouraging-fawn-gown.cyclic.app/emails',postData)
+            .then(res=> {
+                setHeader(res.data.header)
+                setDesc(res.data.desc)
+                setBtn(res.data.btn)
+                setButtonPopUp(true)
+                setEmail('')
+            }).catch(err => {
+                setHeader("Apologies, fatal error occured!")
+                setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
+                setBtn("Ok!")
+                setButtonPopUp(true)
+            })
+        } catch (error) {
             setHeader("Apologies, fatal error occured!")
             setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
             setBtn("Ok!")
             setButtonPopUp(true)
-        })
+        } finally{
+            setLoadingTrig(false)
+        }
     }
     
     return (
@@ -167,6 +179,7 @@ function Reviews() {
                     <div className='mailer'>
                         <input type='email' placeholder='johndoe@gmail.com' value={myemail} onChange={email} required/>
                         <button className='mail' onClick={handleMailSending}>Send<RiMailSendLine className='send-icon'/></button>
+                        <Loader trigger={loadingTrig}></Loader>
                         <Pop trigger={buttonPopUp} setTrigger={setButtonPopUp} text={btn} status={stat} for={"mail-sending"}>
                             <h4>{header}</h4>
                             <hr />

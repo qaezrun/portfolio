@@ -106,6 +106,9 @@ html,body{
     .codeName input{
         font-size: .8em;
     }
+    .textMessage{
+        margin: 0px;
+    }
     .textMessage p{
         font-size: .7em;
     }
