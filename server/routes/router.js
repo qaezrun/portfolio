@@ -12,13 +12,13 @@ router.get('/', async(req,res)=>{// this is how to get data from collection mong
 
 
 router.post('/messages',async (req,res)=>{
-    res.cookie('alreadySentMessage',true)
     const {message,codeName} = req.body
 
     const data = {message:message,codeName:codeName}
     const newMessage = new schemas.Messages(data)
     const saveMessage = await newMessage.save()
     if(saveMessage){
+        res.cookie('alreadySentMessage',true)
         res.send({
             header:"Thank you for sparing your time!",
             desc:"Your participation is well appreciated. Click proceed to view other content I have created.",
