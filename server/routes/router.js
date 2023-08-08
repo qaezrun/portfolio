@@ -3,11 +3,16 @@ const router = express.Router()
 const schemas = require('../models/schemas')
 
 router.get('/', async(req,res)=>{// this is how to get data from collection mongoose
-    res.send('Server is up and running');
+    if(req.cookies.alreadySentMessage){
+        res.send(true)
+    }else{
+        res.send(false)
+    }
 })
 
 
 router.post('/messages',async (req,res)=>{
+    req.cookies('alreadySentMessage',true)
     const {message,codeName} = req.body
 
     const data = {message:message,codeName:codeName}
