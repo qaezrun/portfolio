@@ -12,7 +12,7 @@ router.get('/', async(req,res)=>{// this is how to get data from collection mong
 
 
 router.post('/messages',async (req,res)=>{
-    req.cookies('alreadySentMessage',true)
+    res.cookie('alreadySentMessage',true)
     const {message,codeName} = req.body
 
     const data = {message:message,codeName:codeName}
