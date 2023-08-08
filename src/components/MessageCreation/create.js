@@ -5,8 +5,7 @@ import Pop from '../PopUps/pop';
 import Loader from '../PopUps/loader';
 import axios from 'axios'
 //import Cookies from 'js-cookie'
-import { useState,useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState} from 'react';
 
 
 function Create() {
@@ -19,35 +18,6 @@ function Create() {
     const [message,setMessage] = useState('');
     const [codename,setCodeName] = useState('Unknown');
     const [stat, setStatus] = useState(false);
-    const navigate = useNavigate()
-
-    useEffect(()=>{
-        let processing = true
-        fetchCookies(processing)
-        return () =>{
-            processing = false
-        }
-    },[])
-
-    const fetchCookies = async(processing) =>{
-        try {
-            setLoadingTrig(true)
-            await axios.get('https://encouraging-fawn-gown.cyclic.app').then(res =>{
-                if(processing){
-                    if(res.data){
-                        navigate('Down')
-                    }else{
-                        setLoadingTrig(false)
-                    }
-                }
-            })
-            .catch(err => {
-                setLoadingTrig(false)
-            })    
-        } catch (error) {
-            setLoadingTrig(false)
-        }
-    }
 
     const code = e => {
         setCodeName(e.target.value)
