@@ -6,3 +6,8 @@
   font-family: popsemibo;
   src: url(../public/fonts/Poppins-SemiBold.ttf);
 }
+
+@font-face {
+  font-family: quiapo;
+  src: url(../public/fonts/Quiapo_Free.ttf);
+}

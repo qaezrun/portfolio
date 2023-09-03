@@ -1,0 +1,96 @@
+html,body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+/*main struct*/
+.container{
+    min-height: 100vh;
+    background-color: #010409;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sub-container{
+    width: 1300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.profile{
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.projects{
+    width: 75%;
+    height: 100%;
+}
+/*main struct ends*/
+
+
+
+.profile-box{
+    border-radius: 5px;
+    height: 300px;
+    width: 95%;
+    background-color: #0d1117;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.image-holder{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.data-holder{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circular-port-image{
+    position: relative; 
+    width: 100px; 
+    height: 100px; 
+    overflow: hidden; 
+    border-radius: 50%; 
+    border: 3px solid #30363d;
+}
+.imageItself{
+    width: 100%; height: auto;
+}
+.name-holder h5,p{
+    text-align: center;
+    font-family: popreg;
+    color: white;
+    margin: 0px;
+    padding: 0px;
+}
+.name-holder p{
+    font-size: .7em;
+}
+.socials-holder{
+    padding: 5px 0px 5px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px;
+
+}
+.icons{
+    color: white;
+    font-size: 20px;
+}
