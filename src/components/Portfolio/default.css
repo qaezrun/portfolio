@@ -53,11 +53,11 @@ html,body{
     color: black;
     font-size: small;
 }
-.holder-A-S p,svg{
+.holder-A-S p,.icon-default{
     animation: bounce 1s ease infinite;
 }
 
-.holder-A-S:hover > p, .holder-A-S:hover > svg {
+.holder-A-S:hover > p, .holder-A-S:hover > .icon-default {
     color: #0080FE;
 }
 

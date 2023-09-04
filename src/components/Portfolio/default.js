@@ -1,5 +1,6 @@
 import React from 'react'
 import './default.css'
+import { useNavigate } from 'react-router-dom';
 import {MdFolderCopy,MdPerson} from 'react-icons/md'
 import { useState, useEffect } from 'react';
 
@@ -37,19 +38,24 @@ function Default() {
         };
     }, []);
 
+    const navigate = useNavigate()
+    const projectsClick = () => {
+        navigate('Projects')
+    };
+
     return (
         <div className='main-wrapper'>
             <div className='sub-wrapper'>
                 <h1>{displayedText}</h1>
                 {showTitle ? <h4 className='title animated animatedFadeInUp fadeInUp'>Web and Game Developer</h4> : null}
                 {showSkills ? <div className='about-skills'>
-                    <div className='title-two holder-A-S animated animatedFadeInUp fadeInUp'>
+                    <div className='holder-A-S animated animatedFadeInUp fadeInUp' onClick={projectsClick}>
                         <p>See my projects </p>
-                        <MdFolderCopy/>
+                        <MdFolderCopy className='icon-default'/>
                     </div>
-                    <div className=' title-two holder-A-S animated animatedFadeInUp fadeInUp'>
+                    <div className='holder-A-S animated animatedFadeInUp fadeInUp'>
                         <p>More about me</p>
-                        <MdPerson/>
+                        <MdPerson className='icon-default'/>
                     </div>
                 </div>: null}
             </div>

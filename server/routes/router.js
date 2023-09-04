@@ -68,4 +68,31 @@ router.get('/userEmails', async(req,res)=>{// this is how to get data from colle
     }
 })
 
+
+
+router.get('/acquiredFields', async(req,res)=>{// this is how to get data from collection mongoose
+    const diffFields = [
+        {
+            image:bgfieldmobile,
+            title:'Mobile Development',
+            desc:'These projects are just basic but somehow it show how the way I see things and create things.',
+            tags:['Android Studio','JAVA']
+        },
+        {
+            image:bgfieldweb,
+            title:'Web Development',
+            desc:'Most of the projects here are just front-end made on WordPress and Elementor plugin.',
+            tags:['HTML','CSS','JAVASCRIPT']
+        },
+        {
+            image:bgfieldgame,
+            title:'Game Development',
+            desc:'These projects are 2D games made from two different engine which is Unity and Godot.',
+            tags:['C-SHARP','GDScript']
+        }
+    ];
+
+    res.send(JSON.stringify(diffFields))
+})
+
 module.exports = router

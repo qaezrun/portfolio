@@ -1,0 +1,25 @@
+html,body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+}
+
+.projectBox{
+    min-height: 100vh;
+    background-color: #f0eff6;
+    display: flex;
+    justify-content: center;
+}
+
+.items-inside-box{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: black;
+}
+.items-inside-box h1,p{
+    font-family: popreg;
+    margin: 0px;
+}
