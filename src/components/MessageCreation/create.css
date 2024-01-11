@@ -23,6 +23,35 @@ html,body{
     align-items: center;
     border: 2px solid gainsboro;
 }
+.userRants{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+    background-color: white;
+    border-radius: 10px;
+}
+.message-holder-contents{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.message-holder-contents h2{
+    font-family: popreg;
+    color: black
+}
+.rants-holder::-webkit-scrollbar{
+    display: none;
+}
+.rants-holder{
+    padding: 5px;
+    height: 400px;
+    overflow: auto;
+}
+.themessages{
+    padding-bottom: 5px;
+}
+
 .sub-con h4{
     font-family: popsemibo;
     margin: 0px;
@@ -92,6 +121,11 @@ html,body{
 }
 .send-icon{
     padding-left: 3px;
+}
+@media (max-width:1120px) {
+    .userRants{
+        display: none;
+    }
 }
 @media (max-width: 414px) {
     .main-con {

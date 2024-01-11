@@ -5,7 +5,8 @@ import Pop from '../PopUps/pop';
 import Loader from '../PopUps/loader';
 import axios from 'axios'
 //import Cookies from 'js-cookie'
-import { useState} from 'react';
+import { useState } from 'react';
+import UserMessages from '../CardsMessages/card';
 
 
 function Create() {
@@ -99,6 +100,16 @@ function Create() {
                 <textarea type="text" className='message' placeholder='Enter message..' value={message} onChange={recalculate} maxLength={150}></textarea>
                 </div>
                 <button className='btn' onClick={handleSending}>Send<RiSendPlaneFill className='send-icon'/></button>
+            </div>
+            <div className='userRants'>
+                <div className='message-holder-contents'>
+                    <h2>Received Messages</h2>
+                    <div className='rants-holder'>
+                        <div className='themessages'>
+                            <UserMessages/>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Loader trigger={loadingTrig}></Loader>
             <Pop trigger={buttonPopUp} setTrigger={setButtonPopUp} text={btn} status={stat} for={"message-creation"}>
