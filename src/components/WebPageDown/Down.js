@@ -105,7 +105,7 @@ function Reviews() {
             </div>
         );
     };
-    const targetDate = '2023-12-26T23:59:59';
+    const targetDate = '2024-12-26T23:59:59';
     const [myemail, setEmail] = useState('');
     const [error, setError] = useState(null);
 
@@ -145,7 +145,7 @@ function Reviews() {
         }
         try {
             setLoadingTrig(true)
-            await axios.post('https://encouraging-fawn-gown.cyclic.app/emails',postData)
+            await axios.post('https://agile-jodhpurs-frog.cyclic.app/emails',postData)
             .then(res=> {
                 setHeader(res.data.header)
                 setDesc(res.data.desc)

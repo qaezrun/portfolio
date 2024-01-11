@@ -34,7 +34,7 @@ function Create() {
         }
         try {
             setLoadingTrig(true)
-            await axios.post('https://encouraging-fawn-gown.cyclic.app/messages',postData)
+            await axios.post('https://agile-jodhpurs-frog.cyclic.app/messages',postData)
             .then(res=> {
                 setHeader(res.data.header)
                 setDesc(res.data.desc)
