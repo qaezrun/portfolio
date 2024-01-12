@@ -9,4 +9,5 @@
     align-items: center;
     justify-content: center;
     font-family: popreg;
+    z-index: 1000;
 }

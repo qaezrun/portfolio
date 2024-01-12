@@ -1,24 +1,17 @@
 import React from 'react'
 import './create.css';
 import {RiSendPlaneFill} from 'react-icons/ri';
-import Pop from '../PopUps/pop';
-import Loader from '../PopUps/loader';
 import axios from 'axios'
-//import Cookies from 'js-cookie'
 import { useState } from 'react';
-import UserMessages from '../CardsMessages/card';
-
+import { useDispatch } from 'react-redux';
+import { toggleLoader } from '../../redux/loaderSlice';
+import { setData,setVisibility } from '../../redux/alertSlice';
 
 function Create() {
-    const [header, setHeader] = useState('');
-    const [desc, setDesc] = useState('');
-    const [btn, setBtn] = useState('');
-    const [buttonPopUp,setButtonPopUp] = useState(false);
-    const [loadingTrig,setLoadingTrig] = useState(false);
     const [textAreaCount, ChangeTextAreaCount] = React.useState(0);
     const [message,setMessage] = useState('');
     const [codename,setCodeName] = useState('Unknown');
-    const [stat, setStatus] = useState(false);
+    const dispatch = useDispatch()
 
     const code = e => {
         setCodeName(e.target.value)
@@ -34,36 +27,45 @@ function Create() {
             codeName:codename.trim()
         }
         try {
-            setLoadingTrig(true)
+            // setLoadingTrig(true)
+            dispatch(toggleLoader(true))
             await axios.post('https://agile-jodhpurs-frog.cyclic.app/messages',postData)
             .then(res=> {
-                setHeader(res.data.header)
-                setDesc(res.data.desc)
-                setBtn(res.data.btn)
-                setStatus(true)
-                //Cookies.set('visitHistory',res.data.visited);
-                setButtonPopUp(true)
+                dispatch(setData({
+                    header: res.data.header,
+                    desc: res.data.desc,
+                    btntxt: res.data.btn,
+                    for: "message-creation",
+                    status: true
+                }))
+                dispatch(setVisibility(true))
                 setMessage('');
                 ChangeTextAreaCount(0)
             }).catch(err => {
-                setHeader("Apologies, fatal error occured!")
-                setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
-                setBtn("Ok!")
-                setStatus(false)
-                setButtonPopUp(true)
-                setMessage('');
-                ChangeTextAreaCount(0)
+                dispatch(setData({
+                    header: "Apologies, fatal error occured!",
+                    desc: "I hope Danniel is aware of this and can fix it soon. Please try again later.",
+                    btntxt: "Ok!",
+                    for: "message-creation",
+                    status: false
+                }))
+                dispatch(setVisibility(true))
+                    setMessage('');
+                    ChangeTextAreaCount(0)
             })
         } catch (error) {
-            setHeader("Apologies, fatal error occured!")
-            setDesc("I hope Danniel is aware of this and can fix it soon. Please try again later.")
-            setBtn("Ok!")
-            setStatus(false)
-            setButtonPopUp(true)
+            dispatch(setData({
+                header: "Apologies, fatal error occured!",
+                desc: "I hope Danniel is aware of this and can fix it soon. Please try again later.",
+                btntxt: "Ok!",
+                for: "message-creation",
+                status: false
+            }))
+            dispatch(setVisibility(true))
             setMessage('');
             ChangeTextAreaCount(0)
         } finally{
-            setLoadingTrig(false)
+            dispatch(toggleLoader(false))
         }
     }
     
@@ -73,50 +75,39 @@ function Create() {
         if(textAreaCount >= 10){
             axiosPostData()
         }else if (textAreaCount >= 1 ){
-            setHeader("Please ensure it's above 10 char!");
-            setDesc("I've given plenty of space for these messages, and it might seem odd if your message is under 10 characters.");
-            setBtn("Ok!");
-            setStatus(false)
-            setButtonPopUp(true)
+            dispatch(setData({
+                header: "Please ensure it's above 10 char!",
+                desc:"I've given plenty of space for these messages, and it might seem odd if your message is under 10 characters.",
+                btntxt: "Ok!",
+                for: "message-creation",
+                status: false
+            }))
+            dispatch(setVisibility(true))
         }else{
-            setHeader("Input text first!");
-            setDesc("No need to worry about your identity; the form only asks for a short, anonymous message.");
-            setBtn("Ok!");
-            setStatus(false)
-            setButtonPopUp(true)
+            // setButtonPopUp(true)
+            dispatch(setData({
+                header: "Input text first!",
+                desc:"No need to worry about your identity; the form only asks for a short, anonymous message.",
+                btntxt: "Ok!",
+                for: "message-creation",
+                status: false
+            }))
+            dispatch(setVisibility(true))
         }
     }
     
     return (
-        <div className="main-con">
-            <div className='sub-con'>
-                <h4>Feel free to express your thoughts about Danniel, whether positive or negative.</h4>
-                <div className='codeName'>
-                    <label>Code name:</label>
-                    <input type='text' value={codename} onChange={code}/>
-                </div>
-                <div className='textMessage'>
-                <p>{textAreaCount}/150</p>
-                <textarea type="text" className='message' placeholder='Enter message..' value={message} onChange={recalculate} maxLength={150}></textarea>
-                </div>
-                <button className='btn' onClick={handleSending}>Send<RiSendPlaneFill className='send-icon'/></button>
+        <div className='sub-con'>
+            <h4>Feel free to express your thoughts about Danniel, whether positive or negative.</h4>
+            <div className='codeName'>
+                <label>Code name:</label>
+                <input type='text' value={codename} onChange={code}/>
             </div>
-            <div className='userRants'>
-                <div className='message-holder-contents'>
-                    <h2>Received Messages</h2>
-                    <div className='rants-holder'>
-                        <div className='themessages'>
-                            <UserMessages/>
-                        </div>
-                    </div>
-                </div>
+            <div className='textMessage'>
+            <p>{textAreaCount}/150</p>
+            <textarea type="text" className='message' placeholder='Enter message..' value={message} onChange={recalculate} maxLength={150}></textarea>
             </div>
-            <Loader trigger={loadingTrig}></Loader>
-            <Pop trigger={buttonPopUp} setTrigger={setButtonPopUp} text={btn} status={stat} for={"message-creation"}>
-                <h4>{header}</h4>
-                <hr />
-                <p>{desc}</p>
-            </Pop>
+            <button className='btn' onClick={handleSending}>Send<RiSendPlaneFill className='send-icon'/></button>
         </div>
     );
 }
